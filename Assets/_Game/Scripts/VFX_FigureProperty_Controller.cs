@@ -13,6 +13,10 @@ public class VFX_FigureProperty_Controller : MonoBehaviour
 
     private bool m_isExploding;
 
+    public VisualEffect VFX { get => m_VFX; set => m_VFX = value; }
+
+
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
