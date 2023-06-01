@@ -15,19 +15,23 @@ public class VFX_FigureProperty_Controller : MonoBehaviour
 
     public VisualEffect VFX { get => m_VFX; set => m_VFX = value; }
 
-
-
-    void Update()
+    private void Start()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (m_VFX == null)
-                return;
+        m_isExploding = false;
 
-            m_isExploding = !m_isExploding;
-
-            if (m_VFX.HasBool(m_isExplodingPropertyName))
-                m_VFX.SetBool(m_isExplodingPropertyName, m_isExploding);
-        }
+        if (m_VFX.HasBool(m_isExplodingPropertyName))
+            m_VFX.SetBool(m_isExplodingPropertyName, m_isExploding);
     }
+
+    public void Explode()
+    {
+        if (m_VFX == null)
+            return;
+
+        m_isExploding = true;
+
+        if (m_VFX.HasBool(m_isExplodingPropertyName))
+            m_VFX.SetBool(m_isExplodingPropertyName, m_isExploding);
+    }
+
 }

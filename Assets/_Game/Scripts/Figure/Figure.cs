@@ -17,6 +17,8 @@ public class Figure : MonoBehaviour
 {
     public static System.Action<Figure, FigureType> OnFigureInitialized;
 
+    [SerializeField]
+    private GameObject m_rootObject = null;
 
     [SerializeField]
     private Rigidbody m_body = null;
@@ -35,6 +37,17 @@ public class Figure : MonoBehaviour
 
 
     private FigureType m_figureType;
+
+
+    private void OnEnable()
+    {
+        FiguresController.OnFireValidFigure += OnFireValidFigure;
+    }
+
+    private void OnDisable()
+    {
+        FiguresController.OnFireValidFigure -= OnFireValidFigure;
+    }
 
 
     private void Start()
@@ -57,17 +70,22 @@ public class Figure : MonoBehaviour
         OnFigureInitialized(this, m_figureType);
     }
 
+    private void OnFireValidFigure(Figure figure)
+    {
+        if(figure == this)
+        {
+            m_vfxPropertyController.Explode();
+            Destroy(m_rootObject, m_figureParameters.DelayBeforeDestructionAfterFire);
+        }
+    }
+
     private void EjectFigure()
     {
-        float heightOffset = 1;
+        float randomSpawnAngle = Random.Range(-m_figureParameters.SpawnDirectionAngle / 2f, m_figureParameters.SpawnDirectionAngle / 2f);
 
-        Vector3 randomPointPositionInCircle = Random.insideUnitCircle;
-        randomPointPositionInCircle.z = randomPointPositionInCircle.y;
-        randomPointPositionInCircle.y = heightOffset;
-
-        Vector3 direction = randomPointPositionInCircle.normalized;
-
-        m_body.AddForce(direction * m_figureParameters.StartUpImpulseStrength, ForceMode.Impulse);
+        Vector3 spawnDirection = Quaternion.Euler(0f, 0f, randomSpawnAngle) * Vector3.up;
+        
+        m_body.AddForce(spawnDirection * m_figureParameters.StartUpImpulseStrength, ForceMode.Impulse);
     }
 
     private void SpawnCorrespondingVFX(FigureType type)
@@ -97,7 +115,6 @@ public class Figure : MonoBehaviour
         if (vfxToSpawn == null)
             return;
 
-        //GameObject instantiatedVFX = Instantiate(vfxToSpawn, m_VFXParent.position, Quaternion.identity, m_VFXParent);
         GameObject instantiatedVFX = Instantiate(vfxToSpawn, m_VFXParent);
 
         m_vfxPropertyController.VFX = instantiatedVFX.GetComponent<UnityEngine.VFX.VisualEffect>();

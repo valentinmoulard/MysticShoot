@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3e5c6615b51bd441b9aecece0856338, type: 3}
   m_Name: FigureParameters
   m_EditorClassIdentifier: 
-  m_figure_1_VFX_Prefab: {fileID: 7034490014088328114, guid: 437af5ee88a6086429422f78cd852ea8, type: 3}
-  m_figure_2_VFX_Prefab: {fileID: 5093797508354834275, guid: b964703796834c947abfb72c2cce8ef0, type: 3}
-  m_figure_3_VFX_Prefab: {fileID: 6050577894280128047, guid: 2377c2c0f609477459cd81523b191549, type: 3}
-  m_figure_4_VFX_Prefab: {fileID: 6739037832477867714, guid: 3f5ec224e773b234b96a3da389b64292, type: 3}
+  m_figure_1_VFX_Prefab: {fileID: 5093797508354834275, guid: b964703796834c947abfb72c2cce8ef0, type: 3}
+  m_figure_2_VFX_Prefab: {fileID: 6050577894280128047, guid: 2377c2c0f609477459cd81523b191549, type: 3}
+  m_figure_3_VFX_Prefab: {fileID: 6739037832477867714, guid: 3f5ec224e773b234b96a3da389b64292, type: 3}
+  m_figure_4_VFX_Prefab: {fileID: 7034490014088328114, guid: 437af5ee88a6086429422f78cd852ea8, type: 3}
   StartUpImpulseStrength: 10
+  SpawnDirectionAngle: 40
+  DelayBeforeDestructionAfterFire: 2
+  SpawnSpeed: 5
+  GizmoLineLength: 5

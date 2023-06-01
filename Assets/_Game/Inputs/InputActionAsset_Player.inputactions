@@ -1,5 +1,5 @@
 {
-    "name": "Inputs",
+    "name": "InputActionAsset_Player",
     "maps": [
         {
             "name": "ActionMap_Player",
@@ -40,13 +40,33 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Spawn_Figure",
+                    "type": "Button",
+                    "id": "2da81c10-ce80-483c-a577-251d5ab8f73f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
                     "name": "",
                     "id": "f1519923-a784-4291-baae-446f0941302d",
-                    "path": "<Keyboard>/q",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Figure_1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "df177102-cc41-4b85-90f2-ed76052ceabe",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -57,7 +77,18 @@
                 {
                     "name": "",
                     "id": "b6f1eda9-9ec3-4bae-926b-f54d57b4b4db",
-                    "path": "<Keyboard>/s",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Figure_2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fc432cbe-a312-4fab-85d8-b3e105f8e831",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -68,7 +99,7 @@
                 {
                     "name": "",
                     "id": "d015a4b4-9344-48e1-9a5e-7c5dc88ef4dd",
-                    "path": "<Keyboard>/l",
+                    "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -79,11 +110,22 @@
                 {
                     "name": "",
                     "id": "b6887879-cc8a-4744-8f06-1143a518c847",
-                    "path": "<Keyboard>/m",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Figure_4",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2d51afca-2d6e-4386-b10d-5681c0677cb5",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Spawn_Figure",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

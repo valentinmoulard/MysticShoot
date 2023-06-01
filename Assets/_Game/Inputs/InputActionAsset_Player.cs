@@ -62,13 +62,33 @@ public partial class @InputActionAsset_Player: IInputActionCollection2, IDisposa
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Spawn_Figure"",
+                    ""type"": ""Button"",
+                    ""id"": ""2da81c10-ce80-483c-a577-251d5ab8f73f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
                     ""id"": ""f1519923-a784-4291-baae-446f0941302d"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Figure_1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""df177102-cc41-4b85-90f2-ed76052ceabe"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -79,7 +99,18 @@ public partial class @InputActionAsset_Player: IInputActionCollection2, IDisposa
                 {
                     ""name"": """",
                     ""id"": ""b6f1eda9-9ec3-4bae-926b-f54d57b4b4db"",
-                    ""path"": ""<Keyboard>/s"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Figure_2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fc432cbe-a312-4fab-85d8-b3e105f8e831"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -90,7 +121,7 @@ public partial class @InputActionAsset_Player: IInputActionCollection2, IDisposa
                 {
                     ""name"": """",
                     ""id"": ""d015a4b4-9344-48e1-9a5e-7c5dc88ef4dd"",
-                    ""path"": ""<Keyboard>/l"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -101,11 +132,22 @@ public partial class @InputActionAsset_Player: IInputActionCollection2, IDisposa
                 {
                     ""name"": """",
                     ""id"": ""b6887879-cc8a-4744-8f06-1143a518c847"",
-                    ""path"": ""<Keyboard>/m"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Figure_4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2d51afca-2d6e-4386-b10d-5681c0677cb5"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Spawn_Figure"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -120,6 +162,7 @@ public partial class @InputActionAsset_Player: IInputActionCollection2, IDisposa
         m_ActionMap_Player_Figure_2 = m_ActionMap_Player.FindAction("Figure_2", throwIfNotFound: true);
         m_ActionMap_Player_Figure_3 = m_ActionMap_Player.FindAction("Figure_3", throwIfNotFound: true);
         m_ActionMap_Player_Figure_4 = m_ActionMap_Player.FindAction("Figure_4", throwIfNotFound: true);
+        m_ActionMap_Player_Spawn_Figure = m_ActionMap_Player.FindAction("Spawn_Figure", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -185,6 +228,7 @@ public partial class @InputActionAsset_Player: IInputActionCollection2, IDisposa
     private readonly InputAction m_ActionMap_Player_Figure_2;
     private readonly InputAction m_ActionMap_Player_Figure_3;
     private readonly InputAction m_ActionMap_Player_Figure_4;
+    private readonly InputAction m_ActionMap_Player_Spawn_Figure;
     public struct ActionMap_PlayerActions
     {
         private @InputActionAsset_Player m_Wrapper;
@@ -193,6 +237,7 @@ public partial class @InputActionAsset_Player: IInputActionCollection2, IDisposa
         public InputAction @Figure_2 => m_Wrapper.m_ActionMap_Player_Figure_2;
         public InputAction @Figure_3 => m_Wrapper.m_ActionMap_Player_Figure_3;
         public InputAction @Figure_4 => m_Wrapper.m_ActionMap_Player_Figure_4;
+        public InputAction @Spawn_Figure => m_Wrapper.m_ActionMap_Player_Spawn_Figure;
         public InputActionMap Get() { return m_Wrapper.m_ActionMap_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -214,6 +259,9 @@ public partial class @InputActionAsset_Player: IInputActionCollection2, IDisposa
             @Figure_4.started += instance.OnFigure_4;
             @Figure_4.performed += instance.OnFigure_4;
             @Figure_4.canceled += instance.OnFigure_4;
+            @Spawn_Figure.started += instance.OnSpawn_Figure;
+            @Spawn_Figure.performed += instance.OnSpawn_Figure;
+            @Spawn_Figure.canceled += instance.OnSpawn_Figure;
         }
 
         private void UnregisterCallbacks(IActionMap_PlayerActions instance)
@@ -230,6 +278,9 @@ public partial class @InputActionAsset_Player: IInputActionCollection2, IDisposa
             @Figure_4.started -= instance.OnFigure_4;
             @Figure_4.performed -= instance.OnFigure_4;
             @Figure_4.canceled -= instance.OnFigure_4;
+            @Spawn_Figure.started -= instance.OnSpawn_Figure;
+            @Spawn_Figure.performed -= instance.OnSpawn_Figure;
+            @Spawn_Figure.canceled -= instance.OnSpawn_Figure;
         }
 
         public void RemoveCallbacks(IActionMap_PlayerActions instance)
@@ -253,5 +304,6 @@ public partial class @InputActionAsset_Player: IInputActionCollection2, IDisposa
         void OnFigure_2(InputAction.CallbackContext context);
         void OnFigure_3(InputAction.CallbackContext context);
         void OnFigure_4(InputAction.CallbackContext context);
+        void OnSpawn_Figure(InputAction.CallbackContext context);
     }
 }

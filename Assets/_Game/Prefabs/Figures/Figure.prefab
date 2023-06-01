@@ -109,6 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6a768195eacfa4aa64c71f9fd57cf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_rootObject: {fileID: 7744439765549905098}
   m_body: {fileID: 7744439765549905099}
   m_startFigureType: 0
   m_figureParameters: {fileID: 11400000, guid: f12a59dcf8d74a742b5d0008139c516b, type: 2}
