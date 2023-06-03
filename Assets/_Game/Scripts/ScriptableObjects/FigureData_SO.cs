@@ -17,6 +17,7 @@ public class FigureData_SO : ScriptableObject
     public float SpawnDirectionAngle = 30f;
     public float DelayBeforeDestructionAfterFire = 2f;
     public float SpawnSpeed = 1f;
+    public float m_yPositionDeathCondition = 0f;
 
     [Header("Gizmos")]
     public float GizmoLineLength = 5f;

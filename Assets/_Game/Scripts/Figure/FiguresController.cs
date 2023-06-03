@@ -16,13 +16,42 @@ public class FiguresController : MonoBehaviour
     private void OnEnable()
     {
         Figure.OnFigureInitialized += OnFigureInitialized;
+        Figure.OnFigureDeath+= OnFigureDeath;
         InputsController.OnFireFigure += OnFireFigure;
     }
 
     private void OnDisable()
     {
         Figure.OnFigureInitialized -= OnFigureInitialized;
+        Figure.OnFigureDeath -= OnFigureDeath;
         InputsController.OnFireFigure -= OnFireFigure;
+    }
+
+    private void OnFigureDeath(Figure figure)
+    {
+        switch (figure.FigureType)
+        {
+            case FigureType.None:
+                return;
+            case FigureType.Figure_1:
+                if (m_figure_1_List.Contains(figure))
+                    m_figure_1_List.Remove(figure);
+                break;
+            case FigureType.Figure_2:
+                if (m_figure_2_List.Contains(figure))
+                    m_figure_2_List.Remove(figure);
+                break;
+            case FigureType.Figure_3:
+                if (m_figure_3_List.Contains(figure))
+                    m_figure_3_List.Remove(figure);
+                break;
+            case FigureType.Figure_4:
+                if (m_figure_4_List.Contains(figure))
+                    m_figure_4_List.Remove(figure);
+                break;
+            default:
+                break;
+        }
     }
 
     private void OnFigureInitialized(Figure figure, FigureType type)

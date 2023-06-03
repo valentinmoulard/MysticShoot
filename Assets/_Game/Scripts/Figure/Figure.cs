@@ -16,6 +16,7 @@ public enum FigureType
 public class Figure : MonoBehaviour
 {
     public static System.Action<Figure, FigureType> OnFigureInitialized;
+    public static System.Action<Figure> OnFigureDeath;
 
     [SerializeField]
     private GameObject m_rootObject = null;
@@ -37,6 +38,9 @@ public class Figure : MonoBehaviour
 
 
     private FigureType m_figureType;
+    private bool m_isDead;
+
+    public FigureType FigureType { get => m_figureType; }
 
 
     private void OnEnable()
@@ -55,6 +59,27 @@ public class Figure : MonoBehaviour
         Initialize();
     }
 
+    private void Update()
+    {
+        CheckDeathCondition();
+        UpdateParentVelocity();
+    }
+
+    private void UpdateParentVelocity()
+    {
+        m_vfxPropertyController.SetParentVelocity(m_body.velocity);
+    }
+
+    private void CheckDeathCondition()
+    {
+        if (m_isDead)
+            return;
+
+        if (m_body.position.y < m_figureParameters.m_yPositionDeathCondition)
+        {
+            Kill();
+        }
+    }
 
     private void Initialize()
     {
@@ -74,9 +99,28 @@ public class Figure : MonoBehaviour
     {
         if(figure == this)
         {
-            m_vfxPropertyController.Explode();
-            Destroy(m_rootObject, m_figureParameters.DelayBeforeDestructionAfterFire);
+            FireFigure();
         }
+    }
+
+    private void Kill()
+    {
+        m_isDead = true;
+
+        m_body.isKinematic = true;
+        m_vfxPropertyController.Kill();
+        OnFigureDeath?.Invoke(this);
+
+        Destroy(m_rootObject, m_figureParameters.DelayBeforeDestructionAfterFire);
+    }
+
+    private void FireFigure()
+    {
+        m_vfxPropertyController.Explode();
+        
+        m_body.isKinematic = true;
+
+        Destroy(m_rootObject, m_figureParameters.DelayBeforeDestructionAfterFire);
     }
 
     private void EjectFigure()

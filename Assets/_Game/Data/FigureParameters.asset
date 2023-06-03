@@ -20,4 +20,5 @@ MonoBehaviour:
   SpawnDirectionAngle: 40
   DelayBeforeDestructionAfterFire: 2
   SpawnSpeed: 5
+  m_yPositionDeathCondition: 0
   GizmoLineLength: 5

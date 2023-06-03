@@ -115,6 +115,9 @@ VisualEffect:
       - m_Value: {x: 0, y: 0, z: 0}
         m_Name: StartVelocity
         m_Overridden: 0
+      - m_Value: {x: 0, y: 0, z: 0}
+        m_Name: ParentVelocity
+        m_Overridden: 1
     m_Vector4f:
       m_Array:
       - m_Value: {x: 168.89702, y: 0, z: 86.10437, w: 0}
@@ -145,4 +148,7 @@ VisualEffect:
       m_Array:
       - m_Value: 0
         m_Name: IsExploding
+        m_Overridden: 1
+      - m_Value: 0
+        m_Name: IsDead
         m_Overridden: 1
